@@ -18,12 +18,15 @@ document.getElementById('searchButton').addEventListener('click', function() {
   
   function displayWeather(data) {
     const weatherInfo = document.getElementById('weatherInfo');
+    const weatherIcon = data.weather[0].icon; // Get the weather icon code from the API response
+    const iconUrl = `http://openweathermap.org/img/w/${weatherIcon}.png`; // Construct the URL for the weather icon image
+  
     weatherInfo.innerHTML = `
       <h2>${data.name}, ${data.sys.country}</h2>
       <p>Weather: ${data.weather[0].description}</p>
       <p>Temperature: ${Math.round(data.main.temp - 273.15)}°C</p>
       <p>Humidity: ${data.main.humidity}%</p>
-      <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}.png" alt="Weather Image">
+      <img src="${iconUrl}" alt="Weather Icon"> <!-- Display the weather icon image -->
     `;
   }
   
